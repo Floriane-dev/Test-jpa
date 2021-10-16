@@ -1,6 +1,8 @@
 package org.example.modele;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -20,12 +22,25 @@ public class Livre {
     @Column(name = "TITRE", length = 255, nullable = false)
     private String titre;
 
+    /**
+     * REGLE DE TABLE DE JONCTION N,N
+     * 1 Livre -> n Emprunt(s)
+     * 1 Emprunt ->  n Livre(s)
+     */
+    @ManyToMany
+    @JoinTable(name="COMPO",
+            joinColumns= @JoinColumn(name="ID_LIV", referencedColumnName="ID"),
+            inverseJoinColumns= @JoinColumn(name="ID_EMP", referencedColumnName="ID")
+    )
+    private Set<Emprunt> empruntLivres;
+
     public Livre(){
     }
 
     public Livre(String auteur, String titre) {
         this.auteur = auteur;
         this.titre = titre;
+        empruntLivres = new HashSet<Emprunt>();
     }
 
     //getter et setter
@@ -51,6 +66,12 @@ public class Livre {
 
     public void setTitre(String titre) {
         this.titre = titre;
+    }
+
+    public Set<Emprunt> getEmpruntLivres() { return empruntLivres; }
+
+    public void setEmpruntLivres(Set<Emprunt> empruntLivres) {
+        this.empruntLivres = empruntLivres;
     }
 
     @Override

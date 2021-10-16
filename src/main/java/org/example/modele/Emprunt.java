@@ -2,6 +2,8 @@ package org.example.modele;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "EMPRUNT")
@@ -25,8 +27,18 @@ public class Emprunt {
     @JoinColumn(name = "ID_CLIENT", nullable = false) //@JoinColumn : la colonne client pointe vers la classe emprunt
     private Client clientE; //un lien : clé etrangere vers l'entite client
 
+    /**
+     * par mappedBy="empruntLivres"
+     * je r�cup�re automatiquement
+     * les livres emprunt�s
+     */
+    @ManyToMany(mappedBy="empruntLivres")
+    private Set<Livre> livresE;
+
     //constructeur par défaut
     public Emprunt() {
+        livresE = new HashSet<Livre>();
+
     }
 
     //getter et setter
@@ -45,4 +57,7 @@ public class Emprunt {
     public Client getClientE() { return clientE; }
     public void setClientE(Client clientE) { this.clientE = clientE; }
 
+    public Set<Livre> getLivresE() { return livresE; }
+
+    public void setLivresE(Set<Livre> livresE) { this.livresE = livresE; }
 }

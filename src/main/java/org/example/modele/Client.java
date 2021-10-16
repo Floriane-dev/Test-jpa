@@ -20,12 +20,16 @@ public class Client {
     @OneToMany(mappedBy = "clientE")
     private Set<Emprunt> emprunts;
 
+
     //Constructeur par défaut obligatoire
     public Client(){
         super();
 
-        //rajout l'instanciation de l'emprunt
+        /* rajout l'instanciation de l'emprunt pour éviter les collections null et des incohérences
+        quand le client n'a rien emprunter
+        */
         emprunts = new HashSet<Emprunt>();
+
     }
     public Client(int idClient, String name, String prenom){
      this.idClient = idClient;
@@ -44,4 +48,6 @@ public class Client {
 
     public Set<Emprunt> getEmprunts() { return emprunts; }
     public void setEmprunts(Set<Emprunt> emprunts) { this.emprunts = emprunts; }
+
+
 }
