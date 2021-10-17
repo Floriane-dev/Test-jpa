@@ -9,7 +9,7 @@ import java.util.Set;
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idClient;
+    private int id;
 
     @Column(name = "NOM", length = 50, nullable = false)
     private String name;
@@ -31,14 +31,14 @@ public class Client {
         emprunts = new HashSet<Emprunt>();
 
     }
-    public Client(int idClient, String name, String prenom){
-     this.idClient = idClient;
+    public Client(int id, String name, String prenom){
+     this.id = id;
      this.name = name;
      this.prenom = prenom;
     }
     //Getter et setter
-    public int getIdClient(){ return idClient; }
-    public void setIdClient (int idClient){ this.idClient = idClient; }
+    public int getIdClient(){ return id; }
+    public void setIdClient (int idClient){ this.id = id; }
 
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }

@@ -10,7 +10,7 @@ import java.util.Set;
 public class Emprunt {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idEmprunt;
+    private int id;
 
     @Temporal(TemporalType.DATE)
     @Column(name = "DATE_DEBUT", nullable = false)
@@ -42,8 +42,8 @@ public class Emprunt {
     }
 
     //getter et setter
-    public int getIdEmprunt() { return idEmprunt; }
-    public void setIdEmprunt(int idEmprunt) { this.idEmprunt = idEmprunt; }
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
 
     public Date getDateDeb() { return dateDeb; }
     public void setDateDeb(Date dateDeb) { this.dateDeb = dateDeb; }

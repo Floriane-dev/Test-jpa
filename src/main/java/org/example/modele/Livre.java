@@ -28,7 +28,7 @@ public class Livre {
      * 1 Emprunt ->  n Livre(s)
      */
     @ManyToMany
-    @JoinTable(name="COMPO",
+    @JoinTable (name="COMPO",
             joinColumns= @JoinColumn(name="ID_LIV", referencedColumnName="ID"),
             inverseJoinColumns= @JoinColumn(name="ID_EMP", referencedColumnName="ID")
     )
